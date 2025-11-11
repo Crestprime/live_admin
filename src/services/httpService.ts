@@ -29,16 +29,20 @@ httpService.interceptors.request.use(
     }
     return config;
   },
-  function (error: any) { 
-    return Promise.reject(error)
-  },
-  (error) => {
+  function (error: any) {
     if (error.response.status === 401) {
       Cookies.remove("access_token");
       window.location.href = "/";
     }
-    return Promise.reject(error);
+    return Promise.reject(error)
   }
+  // (error) => {
+  //   if (error.response.status === 401) {
+  //     Cookies.remove("access_token");
+  //     window.location.href = "/";
+  //   }
+  //   return Promise.reject(error);
+  // }
 );
 
 export default httpService;
