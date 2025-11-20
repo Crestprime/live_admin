@@ -19,6 +19,8 @@ import {
 import { RiAccountCircleFill, RiBuilding2Fill, RiFolderOpenFill, RiHome4Fill, RiLock2Fill, RiPieChartFill, RiWalletFill } from "@remixicon/react"
 import { useFetchData } from "@/hooks/useFetchData"
 import Cookies from "js-cookie";
+import { useUserStore } from "@/store/userStore"
+import { IUser } from "@/models/user"
 
 const data: any = {
   user: {
@@ -101,7 +103,13 @@ const data: any = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   const id = Cookies.get("userid")
-  const { data: userData, isLoading } = useFetchData<any>(`/admin/details/${id}`, ["userData"]);
+  const { data: userData, isLoading } = useFetchData<IUser>(`/admin/details/${id}`, ["userData"]);
+  const { setUserDetails } = useUserStore((state) => state)
+
+  React.useEffect(() => {
+    setUserDetails(userData as IUser)
+  }, [userData, isLoading])
+
 
   return (
     <Sidebar className=" !bg-[#f2f4f7] " variant="inset" {...props}>
@@ -123,11 +131,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data?.navMain} />
+        <NavMain items={data?.navMain} permissions={userData?.adminRole?.permissions as string[]} role={userData?.adminRole?.name} />
       </SidebarContent>
       {!isLoading && (
         <SidebarFooter className="mt-auto" >
-          <NavUser user={userData} />
+          <NavUser user={userData as IUser} />
         </SidebarFooter>
       )}
     </Sidebar>
