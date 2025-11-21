@@ -57,19 +57,15 @@ export default function ClientDetails() {
                                     <p className=" font-medium text-gray900 w-full max-w-[130px] " >Email:</p>
                                     <p className=" text-gray700 text-sm " >{data?.email}</p>
                                 </div>
-                                <div className="  w-full flex items-center" >
+                                {/* <div className="  w-full flex items-center" >
                                     <p className=" font-medium text-gray900 w-full max-w-[130px] " >Phone number:</p>
                                     <p className=" text-gray700 text-sm " >{"---"}</p>
-                                </div>
-                                <div className="  w-full flex items-center" >
-                                    <p className=" font-medium text-gray900 w-full max-w-[130px] " >DOB:</p>
-                                    <p className=" text-gray700 text-sm " >{"---"}</p>
-                                </div>
+                                </div>  */}
                             </div>
-                            <div className="  w-full flex items-center" >
+                            {/* <div className="  w-full flex items-center" >
                                 <p className=" font-medium text-gray900 w-full max-w-[130px] " >Address:</p>
                                 <p className=" text-gray700 text-sm " >{"---"}</p>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className=" w-full flex flex-col gap-3 " >
@@ -79,14 +75,14 @@ export default function ClientDetails() {
                                 <p className=" font-medium text-gray900 w-full max-w-[130px] " >Date Joined:</p>
                                 <p className=" text-gray700 text-sm " >{dateFormat(data?.createdAt)}</p>
                             </div>
-                            <div className="  w-full flex items-center" >
+                            {/* <div className="  w-full flex items-center" >
                                 <p className=" font-medium text-gray900 w-full max-w-[130px] " >Active Projects</p>
                                 <p className=" text-gray700 text-sm " >{"---"}</p>
                             </div>
                             <div className="  w-full flex items-center" >
                                 <p className=" font-medium text-gray900 w-full max-w-[130px] " >Status:</p>
                                 <p className=" text-gray700 text-sm " >{"---"}</p>
-                            </div>
+                            </div> */}
                             <div className="  w-full flex items-center" >
                                 <p className=" font-medium text-gray900 w-full max-w-[130px] " >Last Activity:</p>
                                 <p className=" text-gray700 text-sm " >{dateFormat(data?.updatedAt)}</p>

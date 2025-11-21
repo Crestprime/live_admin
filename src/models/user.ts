@@ -40,6 +40,16 @@ export interface IRole {
 }
 
 export interface IUser {
+    adminRole: {
+        "id": string,
+        "permissions": string[],
+        "name": string,
+        "isActive": boolean,
+        "createdAt": string,
+        "updatedAt": string,
+        "isDeleted": false,
+        "deletedAt": string
+    },
     "id": number,
     "firstName": string,
     "lastName": string,

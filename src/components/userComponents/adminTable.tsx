@@ -27,6 +27,9 @@ export default function AdminTable() {
         updatePageSize(10)
     }, [])
 
+    console.log(data);
+    
+
 
     return (
         <div className=" w-full flex flex-col gap-6 " >
