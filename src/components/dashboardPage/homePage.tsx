@@ -1,11 +1,11 @@
 import { useFetchData } from "@/hooks/useFetchData";
-import { FooterCard, HeaderCard, SalesCard } from "../homeComponents";
-import { Button } from "../ui/button";
+import { FooterCard, HeaderCard, SalesCard } from "../homeComponents"; 
 import { IHome } from "@/models/analytics";
 import { LoadingAnimation } from "../shared";
 import { AdminBtn } from "./adminPage/adminBtn";
 import { useUserStore } from "@/store/userStore";
 import { dateFormat } from "@/utils/dateFormat";
+import { CreateListingBtn } from "../listingComponents";
 
 
 export default function HomePage() {
@@ -23,9 +23,7 @@ export default function HomePage() {
                         <p className=" text-sm text-bodyTextColor " >{dateFormat(userDetails?.createdAt)}</p>
                     </div>
                     <div className=" flex gap-4  " >
-                        <Button variant={"main"} className=" h-[40px] text-sm font-medium rounded-full " >
-                            Add Listing
-                        </Button>
+                        <CreateListingBtn />
                         <AdminBtn variant="outline" />
                     </div>
                 </div>
