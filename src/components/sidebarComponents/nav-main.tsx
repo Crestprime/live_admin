@@ -86,12 +86,12 @@ export function NavMain({
   })
 
   const hideRoleItems = [...filteredItems,
-    {
-      title: "Role Management",
-      url: "/dashboard/role",
-      icon: RiLock2Fill,
-      items: []
-    },
+  {
+    title: "Role Management",
+    url: "/dashboard/role",
+    icon: RiLock2Fill,
+    items: []
+  },
   ]
 
 
@@ -120,7 +120,7 @@ export function NavMain({
                 {item.items && item.items.length > 0 ? (
                   <CollapsibleTrigger
                     className={
-                      activePath.includes(item.url)
+                      activePath === (item.url)
                         ? "text-gray700"
                         : "text-gray500"
                     }
@@ -128,12 +128,25 @@ export function NavMain({
                     <item.icon />
                     <span>{item.title}</span>
                   </CollapsibleTrigger>
+                ) : item?.url === "/dashboard" ? (
+                  <div
+                    role="button"
+                    onClick={() => clickHandler(item.url)}
+                    className={
+                      (activePath === item.url && activePath === "/dashboard") ?
+                        "bg-white shadow-lg text-gray700"
+                        : "text-gray500"
+                    }
+                  >
+                    <item.icon />
+                    <span>{item.title}</span>
+                  </div>
                 ) : (
                   <div
                     role="button"
                     onClick={() => clickHandler(item.url)}
                     className={
-                      activePath.includes(item.url)
+                      (activePath?.includes(item.url))
                         ? "bg-white shadow-lg text-gray700"
                         : "text-gray500"
                     }
@@ -156,23 +169,30 @@ export function NavMain({
 
                   <CollapsibleContent>
                     <SidebarMenuSub>
-                      {item.items?.filter((item) => role !== "SUPER_ADMIN" ? item?.title !== "staff" : item).map((subItem) => (
-                        <SidebarMenuSubItem key={subItem.title}>
-                          <SidebarMenuSubButton asChild>
-                            <div
-                              role="button"
-                              onClick={() => clickHandler(subItem.url)}
-                              className={
-                                activePath.includes(subItem.url)
-                                  ? "bg-white shadow-lg text-gray700"
-                                  : "text-gray500"
-                              }
-                            >
-                              <span>{subItem.title}</span>
-                            </div>
-                          </SidebarMenuSubButton>
-                        </SidebarMenuSubItem>
-                      ))}
+                      {item.items?.filter((item) => role !== "SUPER_ADMIN" ? item?.title !== "staff" : item).map((subItem) => {
+
+                        console.log(activePath?.replace("?type=BUILDING", "")?.includes(subItem.url?.replace("?type=BUILDING", "")));
+                        console.log(subItem.url);
+                        
+
+                        return (
+                          <SidebarMenuSubItem key={subItem.title}>
+                            <SidebarMenuSubButton asChild>
+                              <div
+                                role="button"
+                                onClick={() => clickHandler(subItem.url)}
+                                className={
+                                  activePath?.replace("?type=BUILDING", "")?.includes(subItem.url?.replace("?type=BUILDING", ""))
+                                    ? "bg-white shadow-lg text-gray700"
+                                    : "text-gray500"
+                                }
+                              >
+                                <span>{subItem.title}</span>
+                              </div>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        )
+                      })}
                     </SidebarMenuSub>
                   </CollapsibleContent>
                 </>
