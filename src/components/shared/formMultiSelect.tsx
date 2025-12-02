@@ -78,11 +78,11 @@ export default function CustomMultiSelect({
             variant="outline"
             role="combobox"
             className={cn(
-              "w-full justify-between text-left",
+              "w-full justify-between h-fit min-h-[39px] text-left",
               isTouched && error ? "border-destructive" : ""
             )}
           >
-            <div className="flex flex-wrap gap-1">
+            <div className="flex flex-wrap gap-1 items-center">
               {value.length > 0 ? (
                 value.map((v) => (
                   <Badge

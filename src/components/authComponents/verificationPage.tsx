@@ -22,7 +22,7 @@ export default function LoginPage() {
     return (
         <form onSubmit={submit} className=" w-full h-screen flex flex-col items-center justify-center " >
             <div className=" max-w-[438px] flex flex-col items-center text-center " >
-                <img className=" w-[133px] " src="/images/logo.png" alt="logo" />
+            <img className=" w-[133px] " src="/favicon.png" alt="logo" />
                 <h3 className=" text-headerTextColor font-semibold text-2xl mt-6 " >Check your email for a code</h3>
                 <p className=" text-bodyTextColor mt-2 leading-[22.4px]  " >We sent an OTP code sent to <span className=" text-headerTextColor " >{email}</span></p>
                 <div className=" flex flex-col w-full gap-2 items-center mt-4 " >

@@ -17,9 +17,9 @@ const useAdmin = () => {
 
     // const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(false)
-
+    const [roleId, setRoleId] = useState<string>("")
+    const [isOpenRole, setIsOpenRole] = useState(false)    
     const queryClient = useQueryClient()
-
 
     const { mutate: createAdmin, isPending: isLoading } = useMutation({
         mutationFn: (data: IAdminData) => httpService.post(`/admin-auth/create-invitation`, data),
@@ -43,14 +43,24 @@ const useAdmin = () => {
             toast.error(error?.response?.data?.message)
         },
         onSuccess: (data: any) => {
-            toast.success(data?.data?.message) 
+            toast.success(data?.data?.message)
             setIsOpen(false)
             formikRole.resetForm()
             queryClient.invalidateQueries({ queryKey: ["role"] })
         },
     });
 
-
+    const deleteAdmin = useMutation({
+        mutationFn: (data: string) => httpService.delete(`/admin-auth/delete/${data}`),
+        onError: (error: any) => {
+            toast.error(error?.response?.data?.message)
+        },
+        onSuccess: (data: any) => {
+            toast.success(data?.data?.message)
+            setIsOpen(false)
+            queryClient.invalidateQueries({ queryKey: ["admin"] })
+        },
+    });
 
     const deleteRole = useMutation({
         mutationFn: (data: string) => httpService.delete(`/admin-role/${data}`),
@@ -58,7 +68,7 @@ const useAdmin = () => {
             toast.error(error?.response?.data?.message)
         },
         onSuccess: (data: any) => {
-            toast.success(data?.data?.message)  
+            toast.success(data?.data?.message)
             setIsOpen(false)
             queryClient.invalidateQueries({ queryKey: ["role"] })
         },
@@ -98,20 +108,48 @@ const useAdmin = () => {
                 .of(Yup.string().required())
                 .min(1, "At least one permission is required"),
         }),
-        onSubmit: (data: IProps) => { 
-            addRoleManagement.mutate(data)
+        onSubmit: (data: IProps) => {
+            if (roleId) {
+                updateRoleManagement.mutate({
+                    permissions: data?.permissions
+                })
+            } else {
+                addRoleManagement.mutate(data)
+            }
         },
     });
 
 
+    const updateRoleManagement = useMutation({
+        mutationFn: (data: { 
+            permissions: string[] 
+        }) => httpService.put(`/admin-role/${roleId}/permissions`, data),
+        onError: (error: any) => {
+            toast.error(error?.response?.data?.message)
+        },
+        onSuccess: (data: any) => {
+            toast.success(data?.data?.message)
+            setIsOpenRole(false)
+            setRoleId("")
+            queryClient.invalidateQueries({ queryKey: ["role"] })
+            formikRole.resetForm()
+        },
+    });
+
     return {
         formik,
         isLoading,
-        isOpen, 
+        isOpen,
         setIsOpen,
         addRoleManagement,
+        updateRoleManagement,
         formikRole,
-        deleteRole
+        roleId,
+        setRoleId,     
+        deleteRole,
+        deleteAdmin,
+        isOpenRole,
+        setIsOpenRole
     }
 
 }

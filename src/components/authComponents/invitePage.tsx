@@ -11,15 +11,15 @@ import { useSearchParams } from "react-router-dom";
 export default function InvitePage() {
 
 
-    const [searchParams] = useSearchParams(); 
+    const [searchParams] = useSearchParams();
     const inviteId = searchParams.get("inviteId") as string;
- 
-    const { data, isLoading } = useUnsecureFetchData<InviteData>(`/admin-auth/invitation/${inviteId}`, ["invite", inviteId]); 
+
+    const { data, isLoading } = useUnsecureFetchData<InviteData>(`/admin-auth/invitation/${inviteId}`, ["invite", inviteId]);
     const { acceptInvite, InvitePending } = useAuth()
 
     const submit = () => {
         // event.preventDefault();
-        Cookies.set("email", data?.email+"")  
+        Cookies.set("email", data?.email + "")
         acceptInvite({
             id: inviteId
         })
@@ -29,7 +29,7 @@ export default function InvitePage() {
         <LoadingAnimation loading={isLoading} >
             <div className=' w-full h-screen flex flex-col items-center justify-center ' >
                 <div className=" max-w-[370px] flex flex-col items-center text-center " >
-                    <img className=" w-[133px] " src="/images/logo.png" alt="logo" />
+                    <img className=" w-[133px] " src="/favicon.png" alt="logo" />
                     <h3 className=" text-headerTextColor font-semibold text-2xl mt-6 " >Welcome to Capital City</h3>
                     <div className=" w-[72px] h-[72px] my-4 " >
                         <img className=" w-full h-full" src="/images/avatar.png" alt="logo" />
