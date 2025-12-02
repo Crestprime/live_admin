@@ -9,6 +9,7 @@ interface IProps {
     value?: any;
     label?: string;
     type?: React.HTMLInputTypeAttribute,
+    isDisabled?: boolean,
     hasFrontIcon?: boolean;
     hasBackIcon?: boolean,
     icon?: React.ReactNode,
@@ -26,6 +27,7 @@ export default function FormInput(
         value,
         label,
         type,
+        isDisabled,
         hasFrontIcon,
         hasBackIcon,
         icon,
@@ -66,6 +68,7 @@ export default function FormInput(
                         onChange={(e)=> changeHandler(e.target.value)}
                         className={` ${hasFrontIcon ? " pl-12 " : ""} `}
                         placeholder={placeholder}
+                        disabled={isDisabled}
                     />
                 </div>
 
