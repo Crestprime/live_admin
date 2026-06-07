@@ -41,16 +41,7 @@ export default function DashboardLayout() {
             <SidebarTrigger className="-ml-1" />
             {/* <Separator orientation="vertical" className="mr-2 h-4" /> */}
             <Breadcrumb>
-              <BreadcrumbList>
-                {/* <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="/dashboard">
-                    dashboard
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="/dashboard/">back</BreadcrumbLink>
-                </BreadcrumbItem> */}
+              <BreadcrumbList> 
                 {linkPath?.map((item, index) => {
                   return (
                     <div key={index} className=" flex gap-2 items-center " >

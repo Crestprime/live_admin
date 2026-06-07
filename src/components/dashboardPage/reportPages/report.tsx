@@ -70,6 +70,7 @@ export default function ReportPage() {
                         </TabsList>
                     </Tabs>
                 </div>
+                
                 <div ref={contentRef} className=" w-full flex flex-col gap-4 p-4  " >
                     {/* <div className=" w-full flex gap-4 " >
                         <SalesGraph />

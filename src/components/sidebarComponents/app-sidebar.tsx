@@ -117,14 +117,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <div>
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <Command className="size-4" />
-                </div>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className=" text-xs ">Team</span>
-                  <span className=" font-semibold text-sm">Capital City Estates</span>
-                </div>
+              <div className=" w-full " > 
+              <img className=" w-auto h-[50px] " src="/favicon.png" alt="logo" /> 
               </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
